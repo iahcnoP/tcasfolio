@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCAS FOLIO - พรชัย เหลืองประเสริฐ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #9e1c3f; /* โทนสีแดง มศว */
+            --primary-light: #fdf2f4;
+            --text-dark: #2d3748;
+            --text-muted: #718096;
+            --bg-light: #f7fafc;
+            --border-color: #e2e8f0;
+            --accent-color: #2b6cb0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #f0f4f8;
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* Header / Banner */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #d53f8c 100%);
+            color: #ffffff;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-banner h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .hero-banner h2 {
+            font-size: 1.3rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .hero-banner .badge {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 6px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 0.95rem;
+            margin-top: 10px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        /* Profile Quick Info Layout using standard CSS Table/Block for safety */
+        .profile-container {
+            padding: 30px;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-light);
+        }
+
+        .profile-grid {
+            display: table;
+            width: 100%;
+        }
+
+        .profile-row {
+            display: table-row;
+        }
+
+        .profile-cell-img {
+            display: table-cell;
+            width: 180px;
+            vertical-align: top;
+            padding-right: 30px;
+        }
+
+        .profile-cell-info {
+            display: table-cell;
+            vertical-align: top;
+        }
+
+        .profile-img {
+            width: 100%;
+            border-radius: 10px;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .applicant-name {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .applicant-sub {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        /* Section Styling */
+        .section-title {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            border-left: 5px solid var(--primary-color);
+            padding-left: 12px;
+            margin: 35px 30px 20px 30px;
+            font-weight: 600;
+        }
+
+        .content-box {
+            margin: 0 30px 25px 30px;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .info-item {
+            padding: 10px 0;
+            border-bottom: 1px dashed #edf2f7;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        .info-val {
+            color: #4a5568;
+            font-size: 0.95rem;
+        }
+
+        /* Academic Scores Table */
+        .score-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .score-table th {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: left;
+            padding: 12px;
+            font-size: 0.95rem;
+        }
+
+        .score-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.95rem;
+        }
+
+        .score-table tr:nth-child(even) {
+            background-color: var(--bg-light);
+        }
+
+        /* Essay section style */
+        .essay-text {
+            text-indent: 2.5em;
+            text-align: justify;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        /* Activity Card style */
+        .activity-card {
+            border-left: 4px solid var(--accent-color);
+            background: #fcfcfc;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .activity-header {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .activity-meta {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .activity-desc {
+            font-size: 0.95rem;
+            color: #4a5568;
+            text-align: justify;
+        }
+
+        /* Q&A Section */
+        .qa-box {
+            background: #f7fafc;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .qa-question {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .qa-answer {
+            font-size: 0.95rem;
+            color: #2d3748;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: var(--bg-light);
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .profile-cell-img {
+                display: block;
+                width: 100%;
+                text-align: center;
+                padding-right: 0;
+                margin-bottom: 20px;
+            }
+            .profile-cell-info {
+                display: block;
+                width: 100%;
+            }
+            .profile-img {
+                width: 150px;
+            }
+            .content-box {
+                margin: 0 15px 20px 15px;
+                padding: 15px;
+            }
+            .section-title {
+                margin: 25px 15px 15px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Hero Banner -->
+    <div class="hero-banner">
+        <h2>แฟ้มสะสมผลงาน (TCAS Portfolio) ประจำปี 2570</h2>
+        <h1>มหาวิทยาลัยศรีนครินทรวิโรฒ</h1>
+        <h2>คณะศิลปกรรมศาสตร์ · หลักสูตรการศึกษาบัณฑิต (กศ.บ.) สาขาวิชาดนตรีศึกษา</h2>
+        <span class="badge">โครงการผู้มีทักษะพิเศษ รอบที่ 1.1</span>
+    </div>
+
+    <!-- Profile Header Section -->
+    <div class="profile-container">
+        <div class="profile-grid">
+            <div class="profile-row">
+                <div class="profile-cell-img">
+                    <!-- Standard student profile placeholder design -->
+                    <div style="background-color: #cbd5e0; width: 100%; aspect-ratio: 3/4; border-radius: 8px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 0.9rem; color: #4a5568;">
+                        [รูปถ่ายผู้สมัคร]
+                    </div>
+                </div>
+                <div class="profile-cell-info">
+                    <div class="applicant-name">นายพรชัย เหลืองประเสริฐ</div>
+                    <div class="applicant-sub">Ponchai Lueangpraseart</div>
+                    <p style="color: var(--text-muted); margin-bottom: 10px;">
+                        โรงเรียนกระทุ่มแบน (วิเศษสมุทคุณ) จังหวัดสมุทรสาคร<br>
+                        แผนการเรียน: หลักสูตรแกนกลาง (สามัญ) | GPAX 4 เทอม: <strong>3.95</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 1: ข้อมูลทั่วไป -->
+    <div class="section-title">หมวด 1 · ข้อมูลผู้สมัคร</div>
+    <div class="content-box">
+        <div class="info-grid">
+            <div>
+                <div class="info-item"><span class="info-label">เลขประจำตัวประชาชน:</span> <span class="info-val">1-7498-00460-19-7</span></div>
+                <div class="info-item"><span class="info-label">วันเกิด:</span> <span class="info-val">16 กรกฎาคม 2551 (อายุ 18 ปี 0 เดือน)</span></div>
+                <div class="info-item"><span class="info-label">สัดส่วน:</span> <span class="info-val">น้ำหนัก 75 กก. | ส่วนสูง 172 ซม. (ชาย)</span></div>
+                <div class="info-item"><span class="info-label">เบอร์โทรศัพท์:</span> <span class="info-val">099-3782337</span></div>
+                <div class="info-item"><span class="info-label">อีเมล:</span> <span class="info-val">lponchai09@gmail.com</span></div>
+            </div>
+            <div>
+                <div class="info-item"><span class="info-label">ผู้ปกครอง:</span> <span class="info-val">นายเกษมศักดิ์ เหลืองประเสริฐ (บิดา)</span></div>
+                <div class="info-item"><span class="info-label">เบอร์โทรผู้ปกครอง:</span> <span class="info-val">086-7638966</span></div>
+                <div class="info-item"><span class="info-label">ที่อยู่ติดต่อ:</span> <span class="info-val">7/1 หมู่ 3 ซ.ปล่องเหลี่ยม 13 ต.ท่าไม้ อ.กระทุ่มแบน จ.สมุทรสาคร 74110</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 2: ผลการเรียนวิชาพื้นฐาน -->
+    <div class="section-title">ข้อมูลคะแนนกลุ่มสาระการเรียนรู้ (หลักสูตรแกนกลาง)</div>
+    <div class="content-box" style="padding: 10px 0; border: none;">
+        <table class="score-table">
+            <thead>
+                <tr>
+                    <th>กลุ่มสาระการเรียนรู้</th>
+                    <th style="text-align: center; width: 150px;">หน่วยกิตรวม</th>
+                    <th style="text-align: center; width: 150px;">GPA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>การเรียนรู้ภาษาไทย (21)</td>
+                    <td style="text-align: center;">4.00</td>
+                    <td style="text-align: center; font-weight: bold;">4.00</td>
+                </tr>
+                <tr>
+                    <td>การเรียนรู้คณิตศาสตร์ (22)</td>
+                    <td style="text-align: center;">12.00</td>
+                    <td style="text-align: center; font-weight: bold;">4.00</td>
+                </tr>
+                <tr>
+                    <td>การเรียนรู้วิทยาศาสตร์ (23)</td>
+                    <td style="text-align: center;">27.00</td>
+                    <td style="text-align: center; font-weight: bold;">3.90</td>
+                </tr>
+                <tr>
+                    <td>การเรียนรู้สังคมศึกษา ศาสนา และวัฒนธรรม (24)</td>
+                    <td style="text-align: center;">10.00</td>
+                    <td style="text-align: center; font-weight: bold;">4.00</td>
+                </tr>
+                <tr>
+                    <td>การเรียนรู้สุขศึกษาและพลศึกษา (25)</td>
+                    <td style="text-align: center;">4.00</td>
+                    <td style="text-align: center; font-weight: bold;">4.00</td>
+                </tr>
+                <tr>
+                    <td>การเรียนรู้ศิลปะ (26)</td>
+                    <td style="text-align: center;">2.00</td>
+                    <td style="text-align: center; font-weight: bold;">4.00</td>
+                </tr>
+                <tr>
+                    <td>การเรียนรู้การงานอาชีพและเทคโนโลยี (27)</td>
+                    <td style="text-align: center;">2.00</td>
+                    <td style="text-align: center; font-weight: bold;">4.00</td>
+                </tr>
+                <tr>
+                    <td>การเรียนรู้ภาษาต่างประเทศ (28)</td>
+                    <td style="text-align: center;">10.00</td>
+                    <td style="text-align: center; font-weight: bold;">3.90</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Section 3: เรียงความเหตุผลในการสมัคร -->
+    <div class="section-title">หมวด 2 · เรียงความแสดงเหตุผลในการสมัคร</div>
+    <div class="content-box">
+        <div class="essay-text">
+            ตั้งแต่วัยเด็ก ข้าพเจ้าเติบโตมาพร้อมกับเสียงดนตรีที่เปิดอยู่ภายในบ้าน ทั้งบทเพลงของศิลปินไทยและศิลปินต่างประเทศ ทำให้ข้าพเจ้าได้ซึมซับความงดงามของท่วงทำนอง จังหวะ และการถ่ายทอดอารมณ์ผ่านเสียงเพลงมาตั้งแต่อายุยังน้อย ดนตรีจึงไม่ใช่เพียงความบันเทิงสำหรับข้าพเจ้า แต่ยังเป็นสื่อที่ช่วยเชื่อมโยงผู้คนจากหลากหลายเชื้อชาติ ภาษา และวัฒนธรรมเข้าด้วยกัน ดังคำกล่าวที่ว่า “ดนตรีไม่มีพรมแดน” ประสบการณ์เหล่านี้ทำให้ข้าพเจ้ามีความรักและความผูกพันกับดนตรีอย่างลึกซึ้ง และเป็นแรงบันดาลใจให้ต้องการศึกษาด้านดนตรีอย่างจริงจัง
+        </div>
+        <div class="essay-text">
+            เมื่อมีโอกาสศึกษาดนตรี ข้าพเจ้าได้เข้าร่วมวงโยธวาทิตของโรงเรียนในตำแหน่งผู้บรรเลงทรัมเป็ต ซึ่งเป็นเครื่องดนตรีที่ต้องอาศัยทั้งวินัย ความรับผิดชอบ และการฝึกซ้อมอย่างสม่ำเสมอ ไม่ว่าจะเป็นการควบคุมลมหายใจ การอ่านโน้ต และการบรรเลงร่วมกับสมาชิกในวง นอกจากนี้ ข้าพเจ้ายังสนใจการตีกลองชุด ซึ่งช่วยพัฒนาทักษะด้านการรักษาจังหวะ สมาธิ และการประสานงานของร่างกาย ทุกครั้งที่ได้บรรเลงดนตรี ข้าพเจ้ารู้สึกมีความสุขที่สามารถถ่ายทอดความรู้สึกผ่านเสียงเพลง และสร้างความประทับใจให้แก่ผู้ฟัง
+        </div>
+        <div class="essay-text">
+            การเป็นสมาชิกของวงโยธวาทิตทำให้ข้าพเจ้าได้รับประสบการณ์อันมีค่าจากการฝึกซ้อม การแสดงในกิจกรรมต่าง ๆ และการทำงานร่วมกับเพื่อน ๆ จนได้เรียนรู้ถึงความสำคัญของความรับผิดชอบ ความสามัคคี และการทำงานเป็นทีม อีกทั้งยังช่วยให้ข้าพเจ้ามีความกล้าแสดงออกมากขึ้น รู้จักแก้ไขปัญหาเฉพาะหน้าเมื่อเกิดข้อผิดพลาดระหว่างการแสดง และเปิดใจรับฟังความคิดเห็นของผู้อื่นเพื่อนำมาพัฒนาตนเองอยู่เสมอ ประสบการณ์เหล่านี้ทำให้ข้าพเจ้าตระหนักว่า ดนตรีไม่ได้มีคุณค่าเพียงในฐานะศาสตร์แห่งศิลปะ แต่ยังเป็นเครื่องมือสำคัญในการพัฒนาทักษะชีวิตและสร้างแรงบันดาลใจให้กับผู้อื่น
+        </div>
+        <div class="essay-text" style="margin-bottom: 0;">
+            ด้วยเหตุนี้ ข้าพเจ้าจึงมีความมุ่งมั่นที่จะศึกษาต่อในคณะศิลปกรรมศาสตร์ หลักสูตรการศึกษาบัณฑิต สาขาวิชาดนตรีศึกษา มหาวิทยาลัยศรีนครินทรวิโรฒ ซึ่งเป็นสถาบันที่มีความโดดเด่นด้านการผลิตครูและบุคลากรทางการศึกษาที่มีคุณภาพ พร้อมทั้งให้ความสำคัญกับการพัฒนาความรู้ทางดนตรีควบคู่กับศาสตร์ด้านการเรียนการสอน ข้าพเจ้ามุ่งหวังที่จะได้รับความรู้จากคณาจารย์ผู้ทรงคุณวุฒิ พัฒนาทักษะด้านการบรรเลง การถ่ายทอดความรู้ และการจัดการเรียนรู้ทางดนตรี เพื่อเติบโตเป็นครูดนตรีที่มีความรู้ ความสามารถ และคุณธรรม สามารถสร้างแรงบันดาลใจให้ผู้เรียนเห็นคุณค่าของดนตรี และนำความรู้ไปพัฒนาวงการการศึกษาดนตรีและสังคมไทยต่อไปในอนาคต
+        </div>
+    </div>
+
+    <!-- Section 4: เกียรติบัตร & ผลงาน -->
+    <div class="section-title">หมวด 4 · รางวัลและกิจกรรมการเข้าร่วม</div>
+    <div class="content-box" style="border: none; padding: 0;">
+        
+        <!-- Award 1 -->
+        <div class="activity-card">
+            <div class="activity-header">🥇 ได้รับรางวัลระดับเหรียญทอง ชนะเลิศ การแข่งขันศิลปหัตถกรรมนักเรียน ครั้งที่ 71</div>
+            <div class="activity-meta">ระดับเขตพื้นที่การศึกษา | หมวดรางวัล/เกียรติบัตร</div>
+            <div class="activity-desc">
+                รางวัลระดับเหรียญทอง ชนะเลิศ การแข่งขันวงดนตรีลูกทุ่ง ประเภททีม ข (ระดับชั้น ม.1 - ม.6) จากการเข้าร่วมแข่งขันในงานศิลปหัตถกรรมนักเรียน ครั้งที่ 71 ระดับเขตพื้นที่การศึกษา ประสบการณ์ครั้งนี้ไม่เพียงแต่พัฒนาทักษะทางด้านดนตรีของตัวข้าพเจ้าให้สูงขึ้น แต่ยังเป็นบทเรียนสำคัญที่ทำให้ได้เรียนรู้เรื่องความสามัคคี การทำงานร่วมกันเป็นทีม ความอดทน และระเบียบวินัยในการฝึกซ้อมร่วมกับผู้อื่น จนสามารถคว้าชัยชนะระดับเหรียญทองมาครองร่วมกับเพื่อน ๆ ในวงได้สำเร็จ
+            </div>
+        </div>
+
+        <!-- Activity 1 -->
+        <div class="activity-card" style="border-left-color: var(--accent-color);">
+            <div class="activity-header">🎵 เข้าร่วมการประกวดแข่งขันรายการ Platoo music contest ครั้งที่ 1</div>
+            <div class="activity-meta">วันที่ 3 ตุลาคม 2567 | ระดับชาติ</div>
+            <div class="activity-desc">
+                เข้าร่วมการแข่งขัน Platoo Music Contest ครั้งที่ 1 เพื่อทดสอบความสามารถด้านดนตรีและเก็บเกี่ยวประสบการณ์จากเวทีการแข่งขัน แม้จะไม่ได้รับรางวัล แต่การแข่งขันครั้งนี้ทำให้ข้าพเจ้าได้เรียนรู้การทำงานภายใต้ความกดดัน การควบคุมตนเองบนเวที และได้เห็นเทคนิคการบรรเลงของผู้เข้าแข่งขันจากหลากหลายสถาบัน ซึ่งเป็นแรงผลักดันให้ข้าพเจ้ามุ่งมั่นฝึกฝนและพัฒนาทักษะทางดนตรีของตนเองอย่างต่อเนื่อง
+            </div>
+        </div>
+
+        <!-- Activity 2 -->
+        <div class="activity-card" style="border-left-color: var(--accent-color);">
+            <div class="activity-header">🎺 เข้าร่วมแสดงในงานประเพณีแห่เจ้าพ่อหลักเมืองสมุทรสาคร</div>
+            <div class="activity-meta">วันที่ 22 มิถุนายน 2569 | ระดับภาค/ท้องถิ่น</div>
+            <div class="activity-desc">
+                ร่วมบรรเลงดนตรีในฐานะสมาชิกวงโยธวาทิตของโรงเรียน ในขบวนแห่เจ้าพ่อหลักเมืองสมุทรสาคร ซึ่งเป็นงานประเพณีที่ยิ่งใหญ่และสำคัญที่สุดของท้องถิ่น ได้เรียนรู้การทำงานร่วมกับผู้อื่น ความอดทน การมีระเบียบวินัย และรักษาระดับมาตรฐานการแสดงตลอดเส้นทางแห่ที่ยาวนาน สร้างความภาคภูมิใจเป็นอย่างยิ่งที่ได้ใช้ทักษะดนตรีสืบสานวัฒนธรรมท้องถิ่น
+            </div>
+        </div>
+
+        <!-- Activity 3 (Coding) -->
+        <div class="activity-card" style="border-left-color: #2d3748;">
+            <div class="activity-header">💻 ได้รับวุฒิบัตรการอบรม "The Hour of Code" โดย Code.org</div>
+            <div class="activity-meta">หลักสูตรระดับนานาชาติ | ผลการเรียนรู้: ผ่านการทดสอบ</div>
+            <div class="activity-desc">
+                สำเร็จกิจกรรมระดับสากลในการเรียนรู้ทักษะวิทยาการคอมพิวเตอร์และการเขียนโปรแกรมเบื้องต้น ส่งเสริมกระบวนการคิดวิเคราะห์เชิงคำนวณ (Computational Thinking) การจัดลำดับขั้นตอนการแก้ปัญหาอย่างมีเหตุผล เพื่อประยุกต์ใช้ในการจัดระเบียบความคิดเชิงระบบ
+            </div>
+        </div>
+
+        <!-- Activity 4 (AI) -->
+        <div class="activity-card" style="border-left-color: #2d3748;">
+            <div class="activity-header">🤖 ผ่านการเรียนอบรมหลักสูตร "Basic Prompt Engineering"</div>
+            <div class="activity-meta">ระดับชาติ (ผ่านระบบส่งเสริมการเรียนรู้ออนไลน์) | ผลการเรียนรู้: ผ่านการทดสอบ</div>
+            <div class="activity-desc">
+                ศึกษาทักษะการสั่งงานและเขียนชุดคำสั่ง (Prompt) ในการดึงศักยภาพ AI และโมเดลภาษามาใช้ประโยชน์อย่างมีประสิทธิภาพ โดยเรียนรู้หลักการสื่อสารที่ถูกต้อง การตั้งเป้าหมายคำสั่ง และการนำ AI มาช่วยเป็นเครื่องมือวิเคราะห์ ค้นคว้า และสร้างสรรค์ผลงานอย่างเป็นระบบและปลอดภัย
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 5: คำถามเพิ่มเติม -->
+    <div class="section-title">หมวด 5 · คำถามเพิ่มเติมเชิงประยุกต์ของหลักสูตร</div>
+    <div class="content-box">
+        
+        <div class="qa-box">
+            <div class="qa-question">1. แนะนำตนเองอย่างย่อ</div>
+            <div class="qa-answer">
+                ข้าพเจ้า นายพรชัย เหลืองประเสริฐ กำลังศึกษาชั้นมัธยมศึกษาปีที่ 6 ตลอดระยะเวลาที่ผ่านมา ข้าพเจ้าเติบโตมากับเสียงดนตรีและค้นพบว่าดนตรีไม่ใช่แค่เรื่องของทฤษฎีหรือการบรรเลง แต่ดนตรีคือภาษาสากลที่สามารถส่งต่อความรู้สึก กำลังใจ และหล่อหลอมให้ข้าพเจ้าเป็นผู้มีวินัยและเป้าหมายที่ชัดเจน ความฝันสูงสุดของข้าพเจ้าคือการศึกษาต่อเพื่อเป็นครูดนตรีที่มีศักยภาพ คอยสร้างแรงบันดาลใจและส่งมอบความสุขให้แก่เยาวชนรุ่นหลังต่อไป
+            </div>
+        </div>
+
+        <div class="qa-box">
+            <div class="qa-question">2. สรุปผลงานในอดีตที่เกี่ยวกับความสามารถพิเศษทางดนตรีและการแสดง</div>
+            <div class="qa-answer">
+                ข้าพเจ้ามีบทบาทหลักในการเป็นสมาชิกวงโยธวาทิต โรงเรียนกระทุ่มแบน "วิเศษสมุทคุณ" ทำหน้าที่เป่าทรัมเป็ตและมีทักษะรองในการตีกลองชุด ผ่านประสบการณ์แสดงต่อสาธารณะและร่วมกิจกรรมสำคัญ เช่น การประกวดดนตรีเวที Platoo Music Contest และงานแสดงประเพณีระดับจังหวัด นอกจากนี้ข้าพเจ้ายังชอบช่วยคิดสร้างสรรค์ วางแผน และทำคอนเทนต์การซ้อมและนำเสนอบรรยากาศทางดนตรีให้เข้าถึงเยาวชนท่านอื่น ๆ เสมอ
+            </div>
+        </div>
+
+        <div class="qa-box" style="margin-bottom: 0;">
+            <div class="qa-question">3. การประยุกต์ใช้จิตวิทยาการสื่อสารเข้ากับทักษะทางดนตรี</div>
+            <div class="qa-answer">
+                จากประสบการณ์การซ้อมร่วมกับคนจำนวนมาก ข้าพเจ้าพบว่าทักษะทางจิตวิทยาการสื่อสารสำคัญมาก ในระหว่างซ้อมหากเพื่อนสมาชิกเล่นผิดพลาด การเลือกสื่อสารด้วยน้ำเสียงที่นุ่มนวล การให้กำลังใจอย่างเข้าใจ จะช่วยคลายความเครียดและสร้างบรรยากาศบวกให้ดีขึ้น รวมถึงช่วยกระตุ้นความมั่นใจให้ทุกคนพัฒนาได้ไวขึ้น และการขึ้นเวทีก็เป็นการสื่อสารผ่านอารมณ์เพลงโดยปราศจากถ้อยคำ ซึ่งถ้าผู้รับสารมีอารมณ์ร่วมไปกับเรา ย่อมสะท้อนความสำเร็จของการสื่อสารแบบไม่ใช้คำพูดได้เช่นกัน
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>แฟ้มสะสมผลงานอิเล็กทรอนิกส์ (E-Portfolio) ประจำปีการศึกษา 2570</p>
+        <p style="font-size: 0.8rem; margin-top: 5px;">ข้อมูลอ้างอิงจากผู้สมัคร นายพรชัย เหลืองประเสริฐ คณะศิลปกรรมศาสตร์ มศว</p>
+    </div>
+</div>
+
+</body>
+</html>
